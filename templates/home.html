@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Ryland Blog Template{% endblock %}
+
+{% block content %}
+  <div class="homepage post-list">
+    {% for post in posts %}
+      <div class="post">
+        <h2>
+          <a href="{{ post.url }}">
+            {{ post.frontmatter.title }}
+          </a>
+        </h2>
+        {% with frontmatter = post.frontmatter %}
+          {% include "_metadata.html" %}
+        {% endwith %}
+        <div class="post-excerpt">{{ post.excerpt }}</div>
+        <div class="post-meta2">
+          <div>
+            {% with tags = post.tags %}
+              {% include "_tags.html" %}
+            {% endwith %}
+          </div>
+          <div class="post-more">
+            <a href="{{ post.url }}">read more…</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

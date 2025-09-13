@@ -1,18 +1,40 @@
 body {
   font-family: system-ui, sans-serif;
   line-height: 1.5;
-  padding: 1rem;
-  max-width: 42rem;
-  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-h2 {
-  margin-block-end: 0;
+a {
+  text-decoration: none;
+  color: purple;
+}
+
+main {
+  flex: 3;
+  padding: 4rem 2rem;
+  min-width: 360px;
+  max-width: 900px;
+}
+
+aside {
+  flex: 1;
+  padding: 4rem 2rem;
+  font-size: 10pt;
+  color: #444;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-block: 0;
 }
 
 .tags > a {
   display: inline-block;
-  background-color: #eef;
+  background-color: #EEF;
   color: #006;
   text-decoration: none;
   padding: 0.2rem 0.5rem;
@@ -23,7 +45,18 @@ h2 {
 
 .tags > a:hover {
   background-color: #006;
-  color: #eef;
+  color: #EEF;
+}
+
+aside .site-description {
+  font-size: 12pt;
+  font-style: italic;
+  text-wrap: balance;
+  line-height: 1;
+}
+aside nav {
+  margin-block-start: 0.5rem;
+  font-size: 14pt;
 }
 
 .pagination {
@@ -31,3 +64,32 @@ h2 {
   justify-content: space-between
 }
 
+.post-list {
+  margin-block: 2rem;
+}
+.homepage.post-list {
+  margin-block-start: 0.5rem;
+}
+.post {
+  margin-block-end: 2rem;
+}
+.post-excerpt {
+  font-size: 13pt;
+  margin-block: 1rem;
+}
+.post-content {
+  margin-block: 2rem;
+}
+.post-metadata {
+  font-size: 14pt;
+  color: #888;
+  font-weight: normal;
+}
+.post-list .post-metadata {
+  font-size: 14pt;
+}
+.post-meta2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}

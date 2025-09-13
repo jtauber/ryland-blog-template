@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ frontmatter.title }}{% endblock %}
+
+{% block content %}
+  <article class="post">
+    {% include "_pagination.html" %}
+
+    <h1>{{ frontmatter.title }}</h1>
+    {% include "_metadata.html" %}
+
+    <div class="post-content">
+      {{ content }}
+    </div>
+
+    {% include "_tags.html" %}
+
+    {% include "_pagination.html" %}
+  </article>
+{% endblock %}

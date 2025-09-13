@@ -1,0 +1,6 @@
+<div class="post-metadata">
+  <span class="post-date">{{ frontmatter.date.strftime('%B %-d, %Y') }}</span>
+  {% if frontmatter.author %}
+    <span class="post-author">by {{ frontmatter.author }}</span>
+  {% endif %}
+</div>
