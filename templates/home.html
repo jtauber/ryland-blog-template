@@ -7,7 +7,7 @@
     {% for post in posts %}
       <div class="post">
         <h2>
-          <a href="{{ post.url }}">
+          <a href="{{ calc_url(post) }}">
             {{ post.frontmatter.title }}
           </a>
         </h2>
@@ -22,7 +22,7 @@
             {% endwith %}
           </div>
           <div class="post-more">
-            <a href="{{ post.url }}">read more…</a>
+            <a href="{{ calc_url(post) }}">read more…</a>
           </div>
         </div>
       </div>
