@@ -10,7 +10,7 @@ from ryland.tubes import load, markdown, project, excerpt
 
 # just to allow url_root to be set on command line
 parser = ArgumentParser()
-parser.add_argument("--url_root", default="/")
+parser.add_argument("--url-root", default="/")
 url_root = parser.parse_args().url_root
 
 
