@@ -93,3 +93,11 @@ aside nav {
   justify-content: space-between;
   gap: 1rem;
 }
+.svg-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  fill: purple;
+  padding-right: 5px;
+  vertical-align: text-top
+}
