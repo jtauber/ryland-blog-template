@@ -18,20 +18,31 @@ ryland.add_hash("style.css")
 PAGES_DIR = Path(__file__).parent / "pages"
 
 
-tags = defaultdict(list)
+tags = {}
 
 
 def collect_tags():
     def inner(ryland: Ryland, context: Dict[str, Any]) -> Dict[str, Any]:
+        extra_context = {"tags": []}
         for tag in get_context("frontmatter.tags", [])(context):
-            tags[tag].append(
+            tag_details = tags.setdefault(
+                tag,
+                {
+                    "tag": tag,
+                    "url": f"/tag/{tag}/",
+                    "pages": [],
+                },
+            )
+            tag_details["pages"].append(
                 ryland.process(
                     context,
                     excerpt(),
                     project(["frontmatter", "url", "excerpt"]),
                 )
             )
-        return context
+            extra_context["tags"].append(tag_details)
+
+        return {**context, **extra_context}
 
     return inner
 
@@ -51,12 +62,5 @@ for page in ryland.paginated(pages, fields=["url", "frontmatter"]):
     ryland.render(page)
 
 
-for tag in tags:
-    ryland.render(
-        {
-            "tag": tag,
-            "pages": tags[tag],
-            "url": f"/tag/{tag}/",
-            "template_name": "tag.html",
-        },
-    )
+for tag in tags.values():
+    ryland.render(tag, {"template_name": "tag.html"})

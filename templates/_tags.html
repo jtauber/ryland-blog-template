@@ -1,7 +1,7 @@
-{% if frontmatter.tags %}
+{% if tags %}
   <div class="tags">
-    {% for tag in frontmatter.tags %}
-      <a href="/tag/{{ tag }}/">{{ tag }}</a>
+    {% for tag_detail in tags %}
+      <a href="{{ calc_url(tag_detail) }}">{{ tag_detail.tag }}</a>
     {% endfor %}
   </div>
 {% endif %}
