@@ -17,7 +17,7 @@
     <title type="html">{{ post.frontmatter.title }}</title>
     <link href="{{ site.host }}{{ calc_url(post) }}" rel="alternate" type="text/html" title="{{ post.frontmatter.title }}"/>
     <published>{{ post.frontmatter.date.isoformat() }}</published>
-    <updated>{{ post.frontmatter.date.isoformat() }}</updated>
+    <updated>{{ post.source_modified.isoformat() }}</updated>
     <id>{{ site.host }}{{ calc_url(post) }}</id>
     <content type="html" xml:base="{{ site.host }}{{ calc_url(post) }}">{{ post.content | escape }}</content>
     <author>

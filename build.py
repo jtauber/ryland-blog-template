@@ -26,13 +26,7 @@ ryland.add_hash("style.css")
 POSTS_DIR = Path(__file__).parent / "posts"
 PAGES_DIR = Path(__file__).parent / "pages"
 
-SITE_DATA = {
-    "title": "Ryland Blog Template",
-    "description": "a template for a blog built using Ryland",  # optional
-    "feed_url": "/atom.xml",
-    "author": "James Tauber",
-    "host": "https://jtauber.github.io",  # without url-root
-}
+ryland.load_global("site", "site_data.yaml")
 
 
 tags = {}
@@ -79,7 +73,6 @@ def calc_url():
 
 for page_file in PAGES_DIR.glob("*.md"):
     ryland.render(
-        {"site": SITE_DATA},
         load(page_file),
         markdown(frontmatter=True),
         {"url": get_context("frontmatter.url", f"/{page_file.stem}/")},
@@ -102,10 +95,19 @@ posts = sorted(
 )
 
 for post in ryland.paginated(posts, fields=["url", "frontmatter"]):
-    ryland.render(post, {"template_name": "post.html", "site": SITE_DATA})
+    ryland.render(post, {"template_name": "post.html"})
 
 for tag in tags.values():
-    ryland.render(tag, {"template_name": "tag.html", "site": SITE_DATA})
+    ryland.render(tag, {"template_name": "tag.html"})
 
-ryland.render_template("home.html", "index.html", {"posts": posts, "site": SITE_DATA})
-ryland.render_template("atom.xml", "atom.xml", {"posts": posts, "site": SITE_DATA, "updated": posts[0]["frontmatter"]["date"]})
+ryland.render_template("home.html", "index.html", {"posts": posts})
+
+feed_output = ryland.global_context["site"]["feed_url"].lstrip("/")
+ryland.render_template(
+    "atom.xml",
+    feed_output,
+    {
+        "posts": posts,
+        "updated": posts[0]["source_modified"],
+    },
+)

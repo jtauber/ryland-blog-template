@@ -1,0 +1,5 @@
+title: "Ryland Blog Template"
+description: "a template for a blog built using Ryland"  # optional
+feed_url: "/atom.xml"
+author: "James Tauber"
+host: "https://jtauber.github.io"  # without url-root
