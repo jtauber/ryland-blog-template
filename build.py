@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from collections import defaultdict
+from argparse import ArgumentParser
 from pathlib import Path
 from typing import Dict, Any
 from ryland import Ryland
@@ -8,11 +8,19 @@ from ryland.helpers import get_context
 from ryland.tubes import load, markdown, project, excerpt
 
 
+# just to allow url_root to be set on command line
+parser = ArgumentParser()
+parser.add_argument("--url_root", default="/")
+url_root = parser.parse_args().url_root
+
+
+ryland = Ryland(__file__, url_root=url_root)
+
+ryland.clear_output()
+
+
 PANTRY_DIR = Path(__file__).parent / "pantry"
 
-# url_root for default github pages hosting
-ryland = Ryland(__file__, url_root="/ryland-blog-template/")
-ryland.clear_output()
 ryland.copy_to_output(PANTRY_DIR / "style.css")
 ryland.add_hash("style.css")
 
@@ -20,7 +28,6 @@ PAGES_DIR = Path(__file__).parent / "pages"
 
 
 tags = {}
-
 
 def collect_tags():
     def inner(ryland: Ryland, context: Dict[str, Any]) -> Dict[str, Any]:
