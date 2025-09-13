@@ -2,7 +2,7 @@
   <generator uri="https://github.com/jtauber/ryland">Ryland</generator>
   <link href="{{ site.host }}{{ calc_url(site.feed_url) }}" rel="self" type="application/atom+xml"/>
   <link href="{{ site.host }}{{ calc_url('/') }}" rel="alternate" type="text/html"/>
-  <updated>{{ updated.isoformat() }}</updated>
+  <updated>{{ updated.astimezone().isoformat() }}</updated>
   <id>{{ site.host }}{{ calc_url(site.feed_url) }}</id>
   <title type="html">{{ site.title }}</title>
   {% if site.description %}
@@ -17,7 +17,7 @@
     <title type="html">{{ post.frontmatter.title }}</title>
     <link href="{{ site.host }}{{ calc_url(post) }}" rel="alternate" type="text/html" title="{{ post.frontmatter.title }}"/>
     <published>{{ post.frontmatter.date.isoformat() }}</published>
-    <updated>{{ post.source_modified.isoformat() }}</updated>
+    <updated>{{ post.source_modified.astimezone().isoformat() }}</updated>
     <id>{{ site.host }}{{ calc_url(post) }}</id>
     <content type="html" xml:base="{{ site.host }}{{ calc_url(post) }}">{{ post.content | escape }}</content>
     <author>
