@@ -43,7 +43,7 @@ jobs:
 
       - name: Build site
         run: |
-          python build.py --url-root "/ryland-blog-template/"
+          python build.py --url-root "/${{ github.event.repository.name }}/"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
