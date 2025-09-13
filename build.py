@@ -10,7 +10,8 @@ from ryland.tubes import load, markdown, project, excerpt
 
 PANTRY_DIR = Path(__file__).parent / "pantry"
 
-ryland = Ryland(__file__)
+# url_root for default github pages hosting
+ryland = Ryland(__file__, url_root="/ryland-blog-template/")
 ryland.clear_output()
 ryland.copy_to_output(PANTRY_DIR / "style.css")
 ryland.add_hash("style.css")
