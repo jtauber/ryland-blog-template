@@ -36,7 +36,17 @@ jobs:
           git ls-files | while read file; do
             timestamp=$(git log -1 --format="%ct" -- "$file")
             if [ -n "$timestamp" ]; then
+              # Print before
+              echo "File: $file"
+              echo "  Before: $(stat -c %y "$file" 2>/dev/null || stat -f %Sm "$file")"
+              
+              # Restore timestamp
               touch -d "@$timestamp" "$file"
+              
+              # Print after
+              echo "  After:  $(stat -c %y "$file" 2>/dev/null || stat -f %Sm "$file")"
+              echo "  Git:    $(git log -1 --format='%ci' -- "$file")"
+              echo ""
             fi
           done
 
