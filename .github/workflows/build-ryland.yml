@@ -31,9 +31,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Fix timestamps
-      - name: restore timestamps
-        uses: chetan/git-restore-mtime-action@v2
+      - name: Restore file timestamps
+        run: |
+          git ls-files | while read file; do
+            timestamp=$(git log -1 --format="%ct" -- "$file")
+            if [ -n "$timestamp" ]; then
+              touch -d "@$timestamp" "$file"
+            fi
+          done
 
       - name: Set up Python
         uses: actions/setup-python@v4
