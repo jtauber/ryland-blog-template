@@ -41,11 +41,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Restore file timestamps
-        run: |
-          pip install git-restore-mtime
-          git-restore-mtime
-
       - name: Build site
         run: |
           python build.py --url-root "/${{ github.event.repository.name }}/"
