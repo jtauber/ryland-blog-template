@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Dict, Any
 from ryland import Ryland
 from ryland.helpers import get_context
-from ryland.tubes import load, markdown, project, excerpt
+from ryland.tubes import load, markdown, project, excerpt, debug
 
 
 # just to allow url_root to be set on command line
@@ -83,6 +83,7 @@ posts = sorted(
     [
         ryland.process(
             load(post_file),
+            debug(),
             markdown(frontmatter=True),
             excerpt(),
             collect_tags(),
