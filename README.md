@@ -10,7 +10,6 @@ You **will definitely** need to change:
  - `posts`
  - `site_data.yaml`
  - `templates/_sidebar.html` (until I factor out the content)
- - the title in `templates/home.html` (I definitely need to factor that out!)
 
 You **will probably** need to change:
  - `pantry/styles.css`
