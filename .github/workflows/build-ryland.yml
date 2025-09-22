@@ -47,6 +47,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build site
+
+        # if hosting at the root of a domain, use:
+        # run: python build.py
         run: |
           python build.py --url-root "/${{ github.event.repository.name }}/"
 

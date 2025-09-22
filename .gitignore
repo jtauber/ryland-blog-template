@@ -1,1 +1,3 @@
+# comment this if you want to build manually and push the output to git
+# uncomment if you are building automatically in a CI/CD pipeline
 output/
