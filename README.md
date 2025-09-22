@@ -1,5 +1,5 @@
 # ryland-blog-template
-a template for a blog built using Ryland
+a template for a blog built using [Ryland](https://github.com/jtauber/ryland)
 
 
 Install `requirements.txt` in a virtualenv and run `./build.py`.
