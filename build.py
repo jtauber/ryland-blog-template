@@ -18,15 +18,18 @@ ryland = Ryland(__file__, url_root=url_root)
 
 ryland.clear_output()
 
+ryland.load_global("site", "site_data.yaml")
+
+
 PANTRY_DIR = Path(__file__).parent / "pantry"
 
 ryland.copy_to_output(PANTRY_DIR / "style.css")
 ryland.add_hash("style.css")
 
+ryland.render_template("404.html", "404.html")
+
 POSTS_DIR = Path(__file__).parent / "posts"
 PAGES_DIR = Path(__file__).parent / "pages"
-
-ryland.load_global("site", "site_data.yaml")
 
 
 tags = {}
@@ -83,7 +86,6 @@ posts = sorted(
     [
         ryland.process(
             load(post_file),
-            debug(),
             markdown(frontmatter=True),
             excerpt(),
             collect_tags(),
